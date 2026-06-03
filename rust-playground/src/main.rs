@@ -10,6 +10,29 @@ fn build_greeting(user_name: &str) -> String{
 fn create_user_label(name: &str, role: &str) -> String{
     format!("{name} - {role}")
 }
+
+fn validate_task_title(title: &str) -> Result<String, String>{
+    if title.trim().is_empty(){
+        return Err("Название задачи не может быть пустым".to_string());
+    }
+
+    // trim - убирает лишние пробелы
+    Ok(title.trim().to_string())
+    // Возвращаем очищение от пробелов название задачи
+}
+fn format_task_summary(title: &str, assignee: &str, score: u32) -> Result<String, String>{
+    let message = format!("{title} | Исполнитель: {assignee} | Вес: {score}");
+    if title.trim().is_empty(){
+        return Err("Название задачи не может быть пустым".to_string());
+    }
+    if assignee.trim().is_empty(){
+        return Err("Исполнитель не может быть пустым".to_string());
+    }
+
+    Ok(message.trim().to_string())
+
+
+}
 fn main() {
     let app_name = "TeamFlow Desk";
     let lesson_number = 1;
@@ -32,5 +55,32 @@ fn main() {
     let user_role = "Sigma";
     let label = create_user_label(user_name, user_role);
 
-    println!("Пользователь:{label}")
+    println!("Пользователь:{label}");
+
+    let title = "      Сделать Первый экран KanBan";
+    let validation_result = validate_task_title(title);
+
+    match validation_result{
+        Ok(clean_title) =>{
+            println!("Задача создана {clean_title}");
+        }
+        Err(error_message) => {
+            println!("Ошибка {error_message}");
+        }
+    }
+
+    let title_projekt = "Сделай кабана";
+    let asistent = "Коля";
+    let score_user = 150;
+    let format_task_summary = format_task_summary(title_projekt, asistent, score_user);
+
+    match format_task_summary{
+        Ok(clean_title) => {
+            println!("Задача: {clean_title}")
+        }
+        Err(error) =>{
+            println!("Ошибка: {error}")
+        }
+        
+    }
 }
