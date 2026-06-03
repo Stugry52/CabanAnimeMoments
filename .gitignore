@@ -15,4 +15,4 @@ target/
 # Системный файл MacOs
 .DS_Store
 
-.*log  
+.*log
