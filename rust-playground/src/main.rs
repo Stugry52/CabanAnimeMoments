@@ -33,6 +33,11 @@ fn format_task_summary(title: &str, assignee: &str, score: u32) -> Result<String
 
 
 }
+
+fn calculate_task_score(prioty: u32, complexity: u32) -> u32{
+    let score = prioty * complexity;
+    return score
+}
 fn main() {
     let app_name = "TeamFlow Desk";
     let lesson_number = 1;
@@ -83,4 +88,7 @@ fn main() {
         }
         
     }
+
+    let calculate_task = calculate_task_score(3, 7);
+    println!("Ваши очки: {calculate_task}");
 }
