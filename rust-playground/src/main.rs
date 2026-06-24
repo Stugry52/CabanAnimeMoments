@@ -38,6 +38,10 @@ fn calculate_task_score(prioty: u32, complexity: u32) -> u32{
     let score = prioty * complexity;
     return score
 }
+
+fn build_user_labe(name: &str, role: &str) -> String{
+    format!("{name} - {role}")
+}
 fn main() {
     let app_name = "TeamFlow Desk";
     let lesson_number = 1;
@@ -91,4 +95,16 @@ fn main() {
 
     let calculate_task = calculate_task_score(3, 7);
     println!("Ваши очки: {calculate_task}");
+
+    let oleg_name = "Олег";
+    let stas_name = "Стас";
+    let dizayner = "Дизайнер";
+    let programer = "Разработчик";
+    let build_user_labe1 = build_user_labe(oleg_name, dizayner);
+    let build_labe = build_user_labe(stas_name, programer);
+
+    println!("Пользователь: {build_user_labe1}");
+    println!("Пользователь: {build_labe}")
+    
+
 }
